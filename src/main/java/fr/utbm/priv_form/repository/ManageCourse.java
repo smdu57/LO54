@@ -10,6 +10,7 @@ package fr.utbm.priv_form.repository;
  * @author simon
  */
 import fr.utbm.priv_form.entity.Course;
+import java.util.ArrayList;
 import java.util.List; 
 import java.util.Iterator; 
  
@@ -45,24 +46,17 @@ public class ManageCourse {
    }
    
    /* Method to  READ all the employees */
-   public void listCourse( ){
+   public static List listCourse( ){
       Session session = factory.openSession();
-      Transaction tx = null;
-      
+      List courses = new ArrayList();
       try {
-         tx = session.beginTransaction();
-         List courses = session.createQuery("FROM Course").list(); 
-         for (Iterator iterator = courses.iterator(); iterator.hasNext();){
-            Course course = (Course) iterator.next();
-            System.out.println(course.toString());
-         }
-         tx.commit();
+         courses = session.createQuery("FROM Course").list(); 
       } catch (HibernateException e) {
-         if (tx!=null) tx.rollback();
          e.printStackTrace(); 
       } finally {
          session.close(); 
       }
+      return courses;
    }
    
    /* Method to UPDATE salary for an employee */

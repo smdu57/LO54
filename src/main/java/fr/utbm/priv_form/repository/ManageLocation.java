@@ -10,6 +10,7 @@ package fr.utbm.priv_form.repository;
  * @author simon
  */
 import fr.utbm.priv_form.entity.Location;
+import java.util.ArrayList;
 import java.util.List; 
 import java.util.Iterator; 
  
@@ -45,25 +46,20 @@ public class ManageLocation {
    }
    
    /* Method to  READ all the employees */
-   public void listLocation( ){
+   public static List listLocation( ){
       Session session = factory.openSession();
-      Transaction tx = null;
+      List locations = new ArrayList();
       
       try {
-         tx = session.beginTransaction();
-         List locations = session.createQuery("FROM Location").list(); 
-         for (Iterator iterator = locations.iterator(); iterator.hasNext();){
-            Location location = (Location) iterator.next();
-            System.out.println(location.toString());
-         }
-         tx.commit();
+         locations = session.createQuery("FROM Location").list(); 
       } catch (HibernateException e) {
-         if (tx!=null) tx.rollback();
          e.printStackTrace(); 
       } finally {
          session.close(); 
       }
+      return locations;
    }
+   
    
    /* Method to UPDATE salary for an employee */
    public void updateLocation(Integer LocationID, String city ){

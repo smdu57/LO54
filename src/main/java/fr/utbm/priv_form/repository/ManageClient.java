@@ -10,21 +10,19 @@ package fr.utbm.priv_form.repository;
  * @author simon
  */
 import fr.utbm.priv_form.entity.Client;
+import java.util.ArrayList;
 import java.util.List; 
-import java.util.Iterator; 
  
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class ManageClient {
    private static SessionFactory factory; 
    
    /* Method to CREATE an employee in the database */
-   public Integer addClient(String lastname, String firstname, String address, String phone, String email){
+   public static Integer addClient(String lastname, String firstname, String address, String phone, String email){
       Session session = factory.openSession();
       Transaction tx = null;
       Integer clientID = null;
@@ -48,29 +46,32 @@ public class ManageClient {
       return clientID;
    }
    
-   /* Method to  READ all the employees */
-   public void listClient( ){
+   /* Method to  READ all the clients */
+   public static List listClient( ){
       Session session = factory.openSession();
-      Transaction tx = null;
-      
+      List clients = new ArrayList();
       try {
-         tx = session.beginTransaction();
-         List clients = session.createQuery("FROM Client").list(); 
-         for (Iterator iterator = clients.iterator(); iterator.hasNext();){
-            Client client = (Client) iterator.next();
-            System.out.println(client.toString());
-         }
-         tx.commit();
-      } catch (HibernateException e) {
-         if (tx!=null) tx.rollback();
-         e.printStackTrace(); 
+         clients = session.createQuery("FROM Client").list(); 
+         
+      } catch (HibernateException e) { 
       } finally {
          session.close(); 
+   }
+      return clients;
+  }
+   
+   public static Client getClient(int id){
+      Client client = new Client();
+       try{
+         Session session = factory.openSession();
+         client = (Client) session.load(Client.class, id); 
+      } catch (HibernateException e) {
       }
+   return client;
    }
    
    /* Method to UPDATE salary for an employee */
-   public void updateClient(Integer ClientID, String address, String email, String lastname, String firstname, String phone ){
+   public static void updateClient(Integer ClientID, String address, String email, String lastname, String firstname, String phone ){
       Session session = factory.openSession();
       Transaction tx = null;
       

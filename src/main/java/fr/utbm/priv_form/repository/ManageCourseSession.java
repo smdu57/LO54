@@ -12,9 +12,11 @@ package fr.utbm.priv_form.repository;
 import fr.utbm.priv_form.entity.Course;
 import fr.utbm.priv_form.entity.CourseSession;
 import fr.utbm.priv_form.entity.Location;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List; 
 import java.util.Iterator; 
+import java.util.stream.Collectors;
  
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
@@ -27,7 +29,7 @@ public class ManageCourseSession {
    private static SessionFactory factory; 
    
    /* Method to CREATE an employee in the database */
-   public Integer addCourseSession(Date start_date, Date end_date, Integer max, Course courseCode, Location locationId){
+   public static Integer addCourseSession(Date start_date, Date end_date, Integer max, Course courseCode, Location locationId){
       Session session = factory.openSession();
       Transaction tx = null;
       Integer courseSessionID = null;
@@ -70,6 +72,27 @@ public class ManageCourseSession {
       } finally {
          session.close(); 
       }
+   }
+   
+   public static List listCourseSessionFilter(Integer location, Date date, String mot ){
+       Session session = factory.openSession();
+       List<CourseSession> liste = new ArrayList<CourseSession>();
+       try{
+           liste = session.createQuery("FROM CourseSession").list();
+           if(location != null)
+               liste=new ArrayList<CourseSession>(liste.stream().filter((t)->t.getLocationId().getId()==location).collect(Collectors.toList()));
+           if(date != null)
+               liste=new ArrayList<CourseSession>(liste.stream().filter((t)->t.getStartDate()==date).collect(Collectors.toList()));
+           if(mot!=null)
+               liste=new ArrayList<CourseSession>(liste.stream().filter((t)->t.getCourseCode().getTitle().contains(mot)).collect(Collectors.toList()));
+                   
+       }catch (HibernateException e) {
+         e.printStackTrace(); 
+      } finally {
+         session.close(); 
+      }
+
+       return liste;
    }
    
    /* Method to UPDATE salary for an employee */
