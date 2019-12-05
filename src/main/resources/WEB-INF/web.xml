@@ -4,16 +4,54 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<servlet>
-	<servlet-name>ClientServlet</servlet-name>
-	<servlet-class>fr.utbm.priv_form.service.ClientServlet</servlet-class>
 
-	<description>Servlet de l'entitée client</description>
+<web-app>
+    <servlet>
+            <servlet-name>ClientServlet</servlet-name>
+            <servlet-class>fr.utbm.priv_form.service.ClientServlet</servlet-class>
 
-	<init-param>
-		<param-name>auteur</param-name> 
-		<param-value>Coyote</param-value> 
-	</init-param>
+            <description>Servlet de l'entitée client</description>
 
-	<load-on-startup>1</load-on-startup>
-</servlet>
+            <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+            <servlet-name>CourseServlet</servlet-name>
+            <servlet-class>fr.utbm.priv_form.service.CourseServlet</servlet-class>
+
+            <description>Servlet de l'entitée course</description>
+
+            <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+            <servlet-name>CourseSessionServlet</servlet-name>
+            <servlet-class>fr.utbm.priv_form.service.CourseSessionServlet</servlet-class>
+
+            <description>Servlet de l'entitée courseSession</description>
+
+            <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+            <servlet-name>LocationServlet</servlet-name>
+            <servlet-class>fr.utbm.priv_form.service.LocationServlet</servlet-class>
+
+            <description>Servlet de l'entitée client</description>
+
+            <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+		<servlet-name>ClientServlet</servlet-name>
+		<url-pattern>/client</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>CourseServlet</servlet-name>
+		<url-pattern>/course</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>CourseSessionServlet</servlet-name>
+		<url-pattern>/session</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+		<servlet-name>LocationServlet</servlet-name>
+		<url-pattern>/location</url-pattern>
+    </servlet-mapping>
+</web-app>
