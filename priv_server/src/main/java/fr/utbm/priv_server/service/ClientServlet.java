@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.utbm.priv_form.repository.ManageClient;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import javax.servlet.ServletException;
 /**
  *
  * @author simon
@@ -22,12 +23,13 @@ public class ClientServlet extends HttpServlet{
     private static final long SerialVersionUID = 245869137506L;
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         if (request.getParameter("ClientId") != null){
             response.getWriter().println(ManageClient.getClient(parseInt(request.getParameter("ClientId"))));                   
         }
         else{
-            response.getWriter().println(ManageClient.listClient());
+            /*response.getWriter().println(ManageClient.listClient());*/
+            this.getServletContext().getRequestDispatcher( "/Client.jsp" ).forward( request, response );
         }
     }
     

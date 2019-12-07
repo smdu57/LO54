@@ -8,7 +8,7 @@ and open the template in the editor.
 <web-app>
     <servlet>
             <servlet-name>ClientServlet</servlet-name>
-            <servlet-class>fr.utbm.priv_form.service.ClientServlet</servlet-class>
+            <servlet-class>fr.utbm.priv_server.service.ClientServlet</servlet-class>
 
             <description>Servlet de l'entitée client</description>
 
@@ -16,7 +16,7 @@ and open the template in the editor.
     </servlet>
     <servlet>
             <servlet-name>CourseServlet</servlet-name>
-            <servlet-class>fr.utbm.priv_form.service.CourseServlet</servlet-class>
+            <servlet-class>fr.utbm.priv_server.service.CourseServlet</servlet-class>
 
             <description>Servlet de l'entitée course</description>
 
@@ -24,7 +24,7 @@ and open the template in the editor.
     </servlet>
     <servlet>
             <servlet-name>CourseSessionServlet</servlet-name>
-            <servlet-class>fr.utbm.priv_form.service.CourseSessionServlet</servlet-class>
+            <servlet-class>fr.utbm.priv_server.service.CourseSessionServlet</servlet-class>
 
             <description>Servlet de l'entitée courseSession</description>
 
@@ -32,7 +32,7 @@ and open the template in the editor.
     </servlet>
     <servlet>
             <servlet-name>LocationServlet</servlet-name>
-            <servlet-class>fr.utbm.priv_form.service.LocationServlet</servlet-class>
+            <servlet-class>fr.utbm.priv_server.service.LocationServlet</servlet-class>
 
             <description>Servlet de l'entitée client</description>
 
