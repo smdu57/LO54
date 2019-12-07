@@ -51,7 +51,8 @@ public class ManageClient {
       Session session = factory.openSession();
       List clients = new ArrayList();
       try {
-         clients = session.createQuery("FROM Client").list(); 
+         clients = session.createQuery("FROM Client").list();
+         System.out.println("ok");
          
       } catch (HibernateException e) { 
       } finally {
