@@ -10,6 +10,7 @@ package fr.utbm.priv_form.repository;
  * @author simon
  */
 import fr.utbm.priv_form.entity.Client;
+import fr.utbm.priv_form.tools.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List; 
  
@@ -19,7 +20,7 @@ import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
 
 public class ManageClient {
-   private static SessionFactory factory; 
+   private static final SessionFactory factory = HibernateUtil.getSessionFactory(); 
    
    /* Method to CREATE an employee in the database */
    public static Integer addClient(String lastname, String firstname, String address, String phone, String email){

@@ -16,7 +16,7 @@
         <div id="form_container">
 	
 		<h1><a>Client</a></h1>
-		<form id="form_92026"  method="post" action="">
+		<form  method="post" action="">
 					<div class="form_description">
 			<h2>Nouveau client</h2>
 			<p>Formulaire de création d'un nouveau client</p>
@@ -24,34 +24,33 @@
 			<ul >
 			
 					<li id="li_1" >
-		<label  for="element_1">Nom : </label>
+		<label  for="lastname">Nom : </label>
 		<div>
-			<input id="element_1" name="element_1" class="element text medium" type="text" maxlength="255" value=""/> 
+			<input id="lastname" name="lastname" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>		<li id="li_2" >
-		<label  for="element_2">Prénom : </label>
+		<label  for="firstname">Prénom : </label>
 		<div>
-			<input id="element_2" name="element_2" class="element text medium" type="text" maxlength="255" value=""/> 
+			<input id="firstname" name="firstname" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>		<li id="li_3" >
-		<label for="element_3">Adresse : </label>
+		<label for="address">Adresse : </label>
 		<div>
-			<input id="element_3" name="element_3" type="text" maxlength="255" value=""/> 
+			<input id="address" name="address" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>		<li id="li_4" >
-		<label for="element_4">N° de Téléphone :  </label>
+		<label for="phone">N° de Téléphone :  </label>
 		<div>
-			<input id="element_4" name="element_4" type="text" maxlength="255" value=""/> 
+			<input id="phone" name="phone" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>		<li id="li_5" >
-		<label for="element_5">Email : </label>
+		<label for="email">Email : </label>
 		<div>
-			<input id="element_5" name="element_5" type="text" maxlength="255" value=""/> 
+			<input id="email" name="email" type="text" maxlength="255" value=""/> 
 		</div> 
 		</li>
 			
 					<li class="buttons">
-			    <input type="hidden" name="form_id" value="92026" />
 			    
 				<input id="saveForm" type="submit" name="submit" value="Submit" />
 		</li>
