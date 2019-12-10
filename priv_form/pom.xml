@@ -6,7 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
-        <dependency>
+         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-agroal</artifactId>
             <version>5.4.6.Final</version>

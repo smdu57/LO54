@@ -25,11 +25,13 @@ public class ClientServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         if (request.getParameter("ClientId") != null){
-            response.getWriter().println(ManageClient.getClient(parseInt(request.getParameter("ClientId"))));                   
+            request.setAttribute("data",ManageClient.getClient(parseInt(request.getParameter("ClientId"))));
+            this.getServletContext().getRequestDispatcher( "/Client.jsp" ).forward( request, response );
         }
         else{
             /*response.getWriter().println(ManageClient.listClient());*/
-            this.getServletContext().getRequestDispatcher( "/ClientNew.jsp" ).forward( request, response );
+            request.setAttribute("data", ManageClient.listClient());
+            this.getServletContext().getRequestDispatcher( "/Client.jsp" ).forward( request, response );
         }
     }
     

@@ -52,6 +52,12 @@ public class ManageCourseSession {
       }
       return courseSessionID;
    }
+
+    public static List listLocation() {
+        Session session = factory.openSession();
+        List Location = session.createQuery("FROM Location").list();
+        return Location;
+    }
    
    /* Method to  READ all the employees */
    public void listCourseSession( ){

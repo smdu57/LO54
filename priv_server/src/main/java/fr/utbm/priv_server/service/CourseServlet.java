@@ -21,7 +21,8 @@ public class CourseServlet extends HttpServlet{
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        response.getWriter().println(ManageCourse.listCourse());
+        request.setAttribute("data", ManageCourse.listCourse());
+        this.getServletContext().getRequestDispatcher( "/Course.jsp" ).forward( request, response );
     }
 }
 

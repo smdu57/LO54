@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,9 +29,11 @@ import javax.servlet.http.HttpServletResponse;
 public class CourseSessionServlet extends HttpServlet{
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        try {
-            response.getWriter().println(ManageCourseSession.listCourseSessionFilter(parseInt(request.getParameter("location")), new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("startDate")), request.getParameter("mot")));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        try { 
+            request.setAttribute("data", ManageCourseSession.listCourseSessionFilter(parseInt(request.getParameter("location")), new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("startDate")), request.getParameter("mot")));
+            request.setAttribute("location", ManageCourseSession.listLocation());
+            this.getServletContext().getRequestDispatcher( "/CourseSession.jsp" ).forward( request, response );
         } catch (ParseException ex) {
             Logger.getLogger(CourseSessionServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
