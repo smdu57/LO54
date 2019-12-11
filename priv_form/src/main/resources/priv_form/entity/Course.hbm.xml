@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<hibernate-mapping>
+    <class name="fr.utbm.priv_form.entity.Course" table="COURSE" schema="priv_form" optimistic-lock="version">
+        <id name="code" type="string">
+            <column name="CODE" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="title" type="string">
+            <column name="TITLE" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

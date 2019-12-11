@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+hibernate-mapping>
+    <class name="fr.utbm.priv_form.Location" table="LOCATION" schema="priv_form" optimistic-lock="version">
+        <id name="id" type="short">
+            <column name="ID" precision="4" scale="0" />
+            <generator class="sequence">
+                <param name="sequence">location_seq</param>
+            </generator>   
+        </id>
+        <property name="city" type="string">
+            <column name="CITY" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

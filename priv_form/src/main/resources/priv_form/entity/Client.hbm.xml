@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<hibernate-mapping>
+    <class name="fr.utbm.priv_form.entity.Client" table="CLIENT" schema="priv_form" optimistic-lock="version">
+        <id name="id" type="short">
+            <column name="id" precision="4" scale="0" />
+            <generator class="sequence">
+                <param name="sequence">client_seq</param>
+            </generator>    
+        </id>
+        <property name="lastname" type="string">
+            <column name="lastname" length="30" not-null="true" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" length="30" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="60" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="10" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="60" />
+        </property>
+    </class>
+</hibernate-mapping>
