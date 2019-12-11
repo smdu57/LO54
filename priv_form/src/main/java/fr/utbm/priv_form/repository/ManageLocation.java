@@ -10,26 +10,24 @@ package fr.utbm.priv_form.repository;
  * @author simon
  */
 import fr.utbm.priv_form.entity.Location;
+import fr.utbm.priv_form.tools.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List; 
-import java.util.Iterator; 
  
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class ManageLocation {
-   private static SessionFactory factory; 
+   private static final SessionFactory factory = HibernateUtil.getSessionFactory(); 
    
    /* Method to CREATE an employee in the database */
-   public Integer addLocation(String city){
-      Session session = factory.openSession();
+   public static Integer addLocation(String city){
+            Session session = factory.openSession();
       Transaction tx = null;
       Integer locationID = null;
-      
+
       try {
          tx = session.beginTransaction();
          Location location = new Location();
@@ -49,12 +47,15 @@ public class ManageLocation {
    public static List listLocation( ){
       Session session = factory.openSession();
       List locations = new ArrayList();
-      
+      System.out.println("debut");
       try {
+          System.out.println("try");
          locations = session.createQuery("FROM Location").list(); 
       } catch (HibernateException e) {
+          System.out.println("catch");
          e.printStackTrace(); 
       } finally {
+          System.out.println("finally");
          session.close(); 
       }
       return locations;

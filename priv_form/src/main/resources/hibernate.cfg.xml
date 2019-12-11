@@ -46,5 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/priv_form</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">docker</property>
+    <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> <!-- DB Dialect -->
   </session-factory>
 </hibernate-configuration>

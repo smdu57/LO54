@@ -12,6 +12,7 @@ package fr.utbm.priv_form.repository;
 import fr.utbm.priv_form.entity.Course;
 import fr.utbm.priv_form.entity.CourseSession;
 import fr.utbm.priv_form.entity.Location;
+import fr.utbm.priv_form.tools.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List; 
@@ -21,12 +22,10 @@ import java.util.stream.Collectors;
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class ManageCourseSession {
-   private static SessionFactory factory; 
+   private static final SessionFactory factory = HibernateUtil.getSessionFactory(); 
    
    /* Method to CREATE an employee in the database */
    public static Integer addCourseSession(Date start_date, Date end_date, Integer max, Course courseCode, Location locationId){
@@ -52,31 +51,24 @@ public class ManageCourseSession {
       }
       return courseSessionID;
    }
-
-    public static List listLocation() {
-        Session session = factory.openSession();
-        List Location = session.createQuery("FROM Location").list();
-        return Location;
-    }
    
    /* Method to  READ all the employees */
-   public void listCourseSession( ){
+   public static List listCourseSession( ){
       Session session = factory.openSession();
       Transaction tx = null;
+      List courseSessions = new ArrayList<CourseSession>();
       
       try {
          tx = session.beginTransaction();
-         List courseSessions = session.createQuery("FROM CourseSession").list(); 
-         for (Iterator iterator = courseSessions.iterator(); iterator.hasNext();){
-            CourseSession courseSession = (CourseSession) iterator.next();
-            System.out.println(courseSession.toString());
-         }
+         courseSessions = session.createQuery("FROM CourseSession").list(); 
+         
          tx.commit();
       } catch (HibernateException e) {
          if (tx!=null) tx.rollback();
          e.printStackTrace(); 
       } finally {
          session.close(); 
+         return courseSessions;
       }
    }
    

@@ -10,31 +10,30 @@ package fr.utbm.priv_form.repository;
  * @author simon
  */
 import fr.utbm.priv_form.entity.Course;
+import fr.utbm.priv_form.tools.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List; 
-import java.util.Iterator; 
  
 import org.hibernate.HibernateException; 
 import org.hibernate.Session; 
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class ManageCourse {
-   private static SessionFactory factory; 
+   private static final SessionFactory factory = HibernateUtil.getSessionFactory(); 
    
    /* Method to CREATE an employee in the database */
-   public Integer addCourse(String title){
+   public static String addCourse(String code, String title){
       Session session = factory.openSession();
       Transaction tx = null;
-      Integer courseID = null;
+      String courseID = null;
       
       try {
          tx = session.beginTransaction();
          Course course = new Course();
+         course.setCode(code);
          course.setTitle(title);
-         courseID = (Integer) session.save(course); 
+         courseID = session.save(course).toString(); 
          tx.commit();
       } catch (HibernateException e) {
          if (tx!=null) tx.rollback();
@@ -46,7 +45,7 @@ public class ManageCourse {
    }
    
    /* Method to  READ all the employees */
-   public static List listCourse( ){
+   public static List listCourses( ){
       Session session = factory.openSession();
       List courses = new ArrayList();
       try {
